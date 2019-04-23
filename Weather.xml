@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE weatherForecast SYSTEM "Weather.dtd">
+<weatherForecast>
+
+<dailyWeather name="Monday" forecast="Sun">
+<highTemp>65</highTemp>
+<lowTemp>42</lowTemp>
+</dailyWeather>
+
+<dailyWeather name="Sunday" forecast="Clouds">
+<highTemp>70</highTemp>
+<lowTemp>35</lowTemp>
+</dailyWeather>
+
+<dailyWeather name="Tuesday" forecast="Sun">
+<highTemp>60</highTemp>
+<lowTemp>30</lowTemp>
+</dailyWeather>
+
+<dailyWeather name="Wednesday" forecast="Rain">
+<highTemp>50</highTemp>
+<lowTemp>30</lowTemp>
+</dailyWeather>
+
+<dailyWeather name="Thursday" forecast="Snow">
+<highTemp>35</highTemp>
+<lowTemp>20</lowTemp>
+</dailyWeather>
+
+<dailyWeather name="Friday" forecast="Wind">
+<highTemp>50</highTemp>
+<lowTemp>40</lowTemp>
+</dailyWeather>
+
+<dailyWeather name="Saturday" forecast="Clouds">
+<highTemp>45</highTemp>
+<lowTemp>31</lowTemp>
+</dailyWeather>
+
+</weatherForecast>

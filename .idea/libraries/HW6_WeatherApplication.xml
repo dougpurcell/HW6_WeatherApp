@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="HW6_WeatherApplication">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/dist/HW6_WeatherApplication.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
