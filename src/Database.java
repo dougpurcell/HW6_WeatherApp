@@ -90,64 +90,6 @@ String myConnectString =
         }//end catch
 
     }//end storeRecord()
-//
-//    public StudentRecord[] getQueryData ()
-//    {
-//        StudentRecord studentArray[] = new StudentRecord[20];
-//        int numStudents = 0;
-//
-//        try {
-//             // load database driver class
-//         Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
-//
-//
-//         // connect to database
-//         Connection con = DriverManager.getConnection(myConnectString);
-//
-//         Statement stmt = con.createStatement();
-//
-//          ResultSet rs = stmt.executeQuery("SELECT * from Students");
-//
-//          while (rs.next())
-//          {
-//              String rsFName = rs.getString("FirstName");
-//              String rsLName = rs.getString("LastName");
-//              String rsDegreeStat = rs.getString("DegreeStatus");
-//              String rsMajor = rs.getString("Major");
-//
-//              studentArray[numStudents] = new StudentRecord(numStudents, rsFName, rsLName, rsDegreeStat, rsMajor);
-//              numStudents++;
-//              System.out.println(rsFName + " " + rsLName);
-//          }
-//
-//          stmt.close();
-//
-//          con.close();
-//
-//       }
-//       // detect problems interacting with the database
-//      catch ( SQLException sqlException ) {
-//         JOptionPane.showMessageDialog( null,
-//            sqlException.getMessage(), "Database Error",
-//            JOptionPane.ERROR_MESSAGE );
-//
-//         System.exit( 1 );
-//      }
-//
-//      // detect problems loading database driver
-//      catch ( ClassNotFoundException classNotFound ) {
-//         JOptionPane.showMessageDialog( null,
-//            classNotFound.getMessage(), "Driver Not Found",
-//            JOptionPane.ERROR_MESSAGE );
-//
-//         System.exit( 1 );
-//      }
-//       finally{
-//           return studentArray;
-//       }
-//
-//
-//   }
 }// end Database class
     
 

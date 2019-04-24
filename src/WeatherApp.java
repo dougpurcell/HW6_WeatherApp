@@ -1,57 +1,62 @@
 
 import java.io.File;
 import java.io.IOException;
-import java.sql.*;
 
 import javafx.application.Application;
 import javafx.application.HostServices;
+
 import javafx.stage.Stage;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+
 import javafx.scene.Scene;
+
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
+
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.util.Duration;
 
-import javax.swing.*;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+
 import org.xml.sax.SAXException;
 
 public class WeatherApp extends Application {
 
       // Constants
     private static final int MAX_RECORDS = 7;
-    private String[] dayTitles = {"Sunday", "Monday", "Tuesday", "Wenesday", "Thursday", "Friday", "Saturday"};
     // Variables and Instances of Classes
     private WeatherRecord weeklyDataArray[] = new WeatherRecord[MAX_RECORDS];        //store all student records
     private int nextDay = 0;         // location of next empty position in the array
     private int numDays = 0;         // number of input records
-    private int nextGraphic = 0; 
-   private String currentDay = "";
+
+    private String currentDay = "";
     private String xmlDayName;    // temporary storage for name of weekday from xml
     private String xmlForecast;   //temporary storage for forecast from xml
+
     private int xmlHighTemp;   //temporary storage for high temperature from xml
     private int xmlLowTemp;    // temporary storage for low temperature from xml
     private int currentIndex;
+
     private WeatherPane weatherPane;
+
     private VBox mainPane;
     private HBox buttonPane;
+
     private ComboBox<String> daysOfWeek = new ComboBox<>();
+
     private Button week;
+    private Button stat;
+
 
     private Database myDb = new Database();
 
@@ -61,8 +66,8 @@ public class WeatherApp extends Application {
         mainPane = new VBox();
 
         buttonPane = new HBox();
+
         BorderPane paneForComboBox = new BorderPane();
-        paneForComboBox.setLeft(new Label("Select a country: "));
         paneForComboBox.setCenter(daysOfWeek);
         daysOfWeek.setPrefWidth(200);
         daysOfWeek.setValue("Pick Day of Week");
@@ -72,13 +77,15 @@ public class WeatherApp extends Application {
 
 
         week = new Button("Weeks");
+        stat = new Button("Stats");
         week.setOnAction(e -> weatherPane.drawWeekly(weeklyDataArray));
         buttonPane.getChildren().add (week);
-        buttonPane.getChildren().add(new Button("Stat"));
+        buttonPane.getChildren().add(stat);
         buttonPane.getChildren().add(daysOfWeek);
         HostServices host = getHostServices();
 
         weatherPane = new WeatherPane(this, host.getDocumentBase()); // Create a pane
+
         daysOfWeek.setValue(items.get(0));
         daysOfWeek.setOnAction(e -> {
             currentDay = daysOfWeek.getValue();
@@ -86,6 +93,16 @@ public class WeatherApp extends Application {
             weatherPane.drawGraphics(weeklyDataArray, currentIndex);
         });
 
+
+        // Create a scene and place it in the stage
+        Scene scene = new Scene(mainPane, 500, 500);
+        primaryStage.setTitle("Weather App"); // Set the stage title
+        primaryStage.setScene(scene); // Place the scene in the stage
+        primaryStage.show(); // Display the stage
+
+        stat.setOnAction(e -> {
+            weatherPane.drawStats();
+        });
 
         // add panes to main pane
         mainPane.getChildren().add(buttonPane);
@@ -96,11 +113,7 @@ public class WeatherApp extends Application {
 
         // Create a handler for weather
  
-        // Create a scene and place it in the stage
-        Scene scene = new Scene(mainPane, 500, 500);
-        primaryStage.setTitle("Weather App"); // Set the stage title
-        primaryStage.setScene(scene); // Place the scene in the stage
-        primaryStage.show(); // Display the stage
+
 
         storeData();
 
@@ -133,10 +146,10 @@ public class WeatherApp extends Application {
         return 0;
     };
 
-     public void drawWeatherGraphics() {
-          weatherPane.drawGraphics(weeklyDataArray, nextGraphic); // Draw a new graphic
-          nextGraphic = (nextGraphic + 1) % MAX_RECORDS; // loop through array values
-    };
+//     public void drawWeatherGraphics() {
+//          weatherPane.drawGraphics(weeklyDataArray, nextGraphic); // Draw a new graphic
+//          nextGraphic = (nextGraphic + 1) % MAX_RECORDS; // loop through array values
+//    };
          
          
     /**
