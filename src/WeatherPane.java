@@ -212,7 +212,7 @@ public class WeatherPane extends Pane {
                     imageview2.setX(x);
                     imageview2.setY(100.0);
 
-                     getChildren().add(imageview2);
+                    getChildren().add(imageview2);
                     getChildren().add(text2);
 
 
@@ -281,18 +281,24 @@ public class WeatherPane extends Pane {
 //
 //        getChildren().add(chart);
 //    }
-    public void drawStats() {
-        int[] highTempArray = new int[7];
-        int[] lowTempArray = new int[7];
-        String[] weatherForecast = new String[7];
-        WeatherRecord weatherStats[] = new WeatherRecord[7];
 
-        for (int i = 0; i < 7; i++) {
-            highTempArray[i] = weatherStats[i].getHighTemp();
-            System.out.println(highTempArray[i]);
+    public void drawStats(String[] forecast, int[] highTemp, int[] lowTemp) {
+        String[] fCast= forecast;
+        int[] high = highTemp;
+        int[] low = lowTemp;
 
-        };
+        int tempHighTotal = 0;
 
+        for (int i = 0; i<high.length; i++) { //average high calculation
+            tempHighTotal += high[i];
+        }
+        int avgHighTemp = tempHighTotal / high.length;
+
+        int tempLowTotal = 0;
+        for (int j = 0; j<low.length; j++) { //average low calculation
+            tempLowTotal += low[j];
+        }
+        int avgLowTemp = tempLowTotal / low.length;
 
         getChildren().clear(); // clear the pane for next graphic
 
@@ -309,8 +315,16 @@ public class WeatherPane extends Pane {
                         new PieChart.Data("Rain", 22),
                         new PieChart.Data("Wind", 30));
         final PieChart chart = new PieChart(pieChartData);
-        chart.setTitle("Weather Stats");
 
+        Text highText = new Text(40, 430, "Average High: " + Integer.toString(avgHighTemp));
+
+        Text lowText = new Text(360, 430, "Average Low: " + Integer.toString(avgLowTemp));
+
+
+
+        chart.setTitle("Weather Stats");
         getChildren().add(chart);
+        getChildren().add(highText);
+        getChildren().add(lowText);
     }
 }

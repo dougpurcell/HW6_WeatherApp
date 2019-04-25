@@ -42,7 +42,6 @@ public class WeatherApp extends Application {
     private String currentDay = "";
     private String xmlDayName;    // temporary storage for name of weekday from xml
     private String xmlForecast;   //temporary storage for forecast from xml
-
     private int xmlHighTemp;   //temporary storage for high temperature from xml
     private int xmlLowTemp;    // temporary storage for low temperature from xml
     private int currentIndex;
@@ -101,7 +100,22 @@ public class WeatherApp extends Application {
         primaryStage.show(); // Display the stage
 
         stat.setOnAction(e -> {
-            weatherPane.drawStats();
+            int[] highTempArray = new int[7];
+            int[] lowTempArray = new int[7];
+            String[] weatherForecast = new String[7];
+            int i;
+
+            for (i = 0; i< numDays; i++) {
+                highTempArray[i] = weeklyDataArray[i].getHighTemp();
+                lowTempArray[i] = weeklyDataArray[i].getLowTemp();
+                weatherForecast[i] = weeklyDataArray[i].getForecast();
+            }
+                weatherPane.drawStats(
+                        weatherForecast,
+                        highTempArray,
+                        lowTempArray
+                );
+
         });
 
         // add panes to main pane
